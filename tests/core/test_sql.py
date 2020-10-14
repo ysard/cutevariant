@@ -268,7 +268,7 @@ def test_insert_set_from_file(conn):
     with open(filename, "w") as fp:
         fp.write("\n".join(data))
 
-    sql.insert_set_from_file(conn, "test", filename)
+    sql.import_wordset_from_file(conn, "test", filename)
 
     # TODO: for now the one to many relation is not implemented
     # All records have the name of the set... awesome

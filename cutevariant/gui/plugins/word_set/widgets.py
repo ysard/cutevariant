@@ -23,7 +23,7 @@ from PySide2.QtGui import QIcon
 
 # Custom imports
 from cutevariant.gui.plugin import PluginWidget
-from cutevariant.core.sql import get_sql_connexion, get_sets, get_words_set, sanitize_words
+from cutevariant.core.sql import get_sql_connexion, get_wordsets, get_words_in_wordset, sanitize_words
 from cutevariant.core.command import import_cmd, drop_cmd
 from cutevariant import commons as cm
 from cutevariant.gui.ficon import FIcon
@@ -307,7 +307,7 @@ class WordSetWidget(PluginWidget):
         dialog = WordListDialog()
 
         # populate dialog
-        dialog.model.setStringList(list(get_words_set(self.conn, wordset_name)))
+        dialog.model.setStringList(list(get_words_in_wordset(self.conn, wordset_name)))
 
         if dialog.exec_() == QDialog.Accepted:
             # Drop previous
@@ -329,7 +329,7 @@ class WordSetWidget(PluginWidget):
         """Actualize the list of word sets"""
         self.view.clear()
         self.set_names = list()
-        for data in get_sets(self.conn):
+        for data in get_wordsets(self.conn):
             set_name = data["name"]
             item = QListWidgetItem()
             item.setText(set_name)

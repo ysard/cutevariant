@@ -570,7 +570,7 @@ def sanitize_words(words):
     return data
 
 
-def insert_set_from_file(conn: sqlite3.Connection, wordset_name, filename):
+def import_wordset_from_file(conn: sqlite3.Connection, wordset_name, filename):
     """Create Word set from the given file
 
     Args:
@@ -612,7 +612,7 @@ def insert_set_from_file(conn: sqlite3.Connection, wordset_name, filename):
 delete_set_by_name = partial(delete_by_name, table_name="sets")
 
 
-def get_sets(conn):
+def get_wordsets(conn):
     """Return names and number of words in all sets stored in DB
 
     Returns:
@@ -624,7 +624,7 @@ def get_sets(conn):
         yield dict(row)
 
 
-def get_words_set(conn, wordset_name):
+def get_words_in_wordset(conn, wordset_name):
     """Return generator of words in the given word set
 
     Returns:
